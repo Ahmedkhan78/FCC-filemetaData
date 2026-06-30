@@ -40,7 +40,7 @@ app.post("/api/fileanalyse", function (req, res) {
   });
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, function () {
   console.log("Your app is listening on port " + port);
