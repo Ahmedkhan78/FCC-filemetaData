@@ -18,25 +18,15 @@ app.get("/hello", function (req, res) {
   res.json({ greetings: "Hello, API" });
 });
 
-app.post("/api/fileanalyse", function (req, res) {
-  upload(req, res, function (err) {
-    if (err instanceof multer.MulterError) {
-      return res.status(400).json({ error: err.message });
-    }
+app.post("/api/fileanalyse", upload, function (req, res) {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded" });
+  }
 
-    if (err) {
-      return res.status(500).json({ error: "File upload failed" });
-    }
-
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
-    }
-
-    return res.json({
-      name: req.file.originalname,
-      type: req.file.mimetype,
-      size: req.file.size,
-    });
+  return res.json({
+    name: req.file.originalname,
+    type: req.file.mimetype,
+    size: req.file.size,
   });
 });
 
