@@ -26,7 +26,7 @@ app.post("/api/fileanalyse", upload.single("upfile"), (req, res) => {
       size: req.file.size,
     });
   } catch (err) {
-    res.send(400);
+    res.status(400).json({ error: "No file uploaded" });
   }
 });
 
