@@ -11,7 +11,7 @@ var upload = multer({ dest: "uploads/" });
 
 var app = express();
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use("/public", express.static(process.cwd() + "/public"));
 
 app.get("/", function (req, res) {
